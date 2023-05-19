@@ -34,6 +34,10 @@ function getPlayerChoice() {
   return playerChoice;
 }
 
+const rock = document.querySelector('.rock');
+const paper = document.querySelector('.paper');
+const scissors = document.querySelector('.scissors');
+
 function compareRockPaperScissorsChoices(computerChoice, playerChoice) {
   if (computerChoice === playerChoice) {
     return "It's a tie";
@@ -74,80 +78,39 @@ function compareRockPaperScissorsChoices(computerChoice, playerChoice) {
 }
 
 function decideVictor() {
-  for (let i = 0; i < 5; i++) {
-    const victor = compareRockPaperScissorsChoices(
-      getComputerChoice(),
-      getPlayerChoice()
-    );
+  // for (let i = 0; i < 5; i++) {
+  //   const victor = compareRockPaperScissorsChoices(
+  //     getComputerChoice(),
+  //     getPlayerChoice()
+  //   );
 
-    // If player aborts game, return 0 and exit loop
-    if (victor === 0) {
-      console.log('Player aborted game');
-      return 0;
-    }
+  const victor = '';
 
-    // If game is a tie, minus 1 from i to keep game going till someone reaches 3 wins
-    else if (victor === "It's a tie") {
-      console.log('Tie');
-      i--;
-    }
-
-    // If it's not a tie, check to see if player score is 3 and make them the victor if it is
-    else if (playerScore === 3) {
-      console.log('Player wins!');
-      return 'Player Wins!';
-    }
-
-    // If it's not a tie AND the player score is not at 3, check the computer score and see if that's at 3. If it is, declare the computer as the victor
-    else if (computerScore === 3) {
-      console.log('Computer Wins!');
-      return 'Computer wins!';
-    }
+  // If player aborts game, return 0 and exit loop
+  if (victor === 0) {
+    console.log('Player aborted game');
+    return 0;
   }
+
+  // If game is a tie, minus 1 from i to keep game going till someone reaches 3 wins
+  else if (victor === "It's a tie") {
+    console.log('Tie');
+    i--;
+  }
+
+  // If it's not a tie, check to see if player score is 3 and make them the victor if it is
+  else if (playerScore === 3) {
+    console.log('Player wins!');
+    return 'Player Wins!';
+  }
+
+  // If it's not a tie AND the player score is not at 3, check the computer score and see if that's at 3. If it is, declare the computer as the victor
+  else if (computerScore === 3) {
+    console.log('Computer Wins!');
+    return 'Computer wins!';
+  }
+
   return 'Game Failed';
 }
 
 decideVictor();
-
-// let string = 'whoever';
-// let arr = ['x', 'x', 'x', 'x', 'x', 'x', 'x'];
-// let newArr = string.split('');
-// let usedArr = [];
-// let hang = 0;
-
-// function compareLetter() {
-//   if (hang !== 8) {
-//     let letter = prompt('Enter letter');
-//     let miss = 0;
-
-//     for (let i = 0; i < usedArr.length; i++) {
-//       if (usedArr[i] === letter) {
-//         console.log('Already used, try again');
-//         return;
-//       }
-//     }
-
-//     for (let i = 0; i < arr.length; i++) {
-//       if (newArr[i] === letter) {
-//         arr.splice(i, 1, letter);
-//       } else {
-//         miss++;
-//       }
-//     }
-
-//     if (miss === newArr.length) {
-//       hang++;
-//     }
-
-//     usedArr.push(letter);
-
-//     console.log(usedArr);
-//     console.log(arr);
-//     console.log(hang);
-//   } else {
-//     console.log('Game over');
-//     return 'Game over';
-//   }
-// }
-
-console.log('Hello');
