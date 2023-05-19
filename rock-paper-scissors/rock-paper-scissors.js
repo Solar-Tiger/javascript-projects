@@ -34,9 +34,13 @@ function getPlayerChoice() {
   return playerChoice;
 }
 
-const rock = document.querySelector('.rock');
-const paper = document.querySelector('.paper');
-const scissors = document.querySelector('.scissors');
+const playerChoices = document.querySelectorAll('.rps-btn');
+
+playerChoices.forEach((playerChoice) => {
+  playerChoice.addEventListener('click', () => {
+    console.log(playerChoice.textContent);
+  });
+});
 
 function compareRockPaperScissorsChoices(computerChoice, playerChoice) {
   if (computerChoice === playerChoice) {
