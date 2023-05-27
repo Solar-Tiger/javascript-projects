@@ -1,24 +1,28 @@
+/* eslint-disable no-undef */
 /* eslint-disable prefer-const */
 
 // select each button and asign them all to the variable "rpsButtons"
-const rpsButtons = document.querySelectorAll('.rps-btn');
+const playerChoices = document.querySelector('.player-choices');
 
 // asign both player and computer a score of 0
 let playerScore = 0;
 let computerScore = 0;
 
-rpsButtons.forEach((rpsButton) => {
-  rpsButton.addEventListener('click', () => {
-    let rpsRoundVictor = decideRoundVictor(
-      rpsButton.textContent.toLowerCase(),
-      computersChoice()
-    );
+playerChoices.addEventListener('click', gameTime);
 
-    updateRPSScore(rpsRoundVictor);
+function gameTime(e) {
+  let rpsButton = e.target.classList[0];
 
-    console.log(playerScore, computerScore);
-  });
-});
+  if (rpsButton !== 'rps-btn') {
+    return;
+  }
+
+  let playersChoice = e.target.classList[1];
+
+  let roundVictor = decideRoundVictor(playersChoice, computersChoice());
+
+  console.log(roundVictor);
+}
 
 // get computers choice randomly between rock, paper and scissors and return that value
 function computersChoice() {
@@ -50,7 +54,10 @@ function decideRoundVictor(playerChoice, computerChoice) {
 function updateRPSScore(roundVictor) {
   if (roundVictor === 'Player wins!') {
     playerScore += 1;
-  } else if (roundVictor === 'Computer wins!') {
+  }
+
+  // code
+  else if (roundVictor === 'Computer wins!') {
     computerScore += 1;
   }
 }
