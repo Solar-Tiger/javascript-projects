@@ -21,7 +21,9 @@ function gameTime(e) {
 
   let roundVictor = decideRoundVictor(playersChoice, computersChoice());
 
-  console.log(roundVictor);
+  updateRPSScore(roundVictor);
+
+  rpsChampion();
 }
 
 // get computers choice randomly between rock, paper and scissors and return that value
@@ -50,7 +52,7 @@ function decideRoundVictor(playerChoice, computerChoice) {
   return 'Computer wins!';
 }
 
-// keep track of the score based on who won
+// keep track of the score based on who won each round
 function updateRPSScore(roundVictor) {
   if (roundVictor === 'Player wins!') {
     playerScore += 1;
@@ -59,5 +61,25 @@ function updateRPSScore(roundVictor) {
   // code
   else if (roundVictor === 'Computer wins!') {
     computerScore += 1;
+  }
+}
+
+// once a score reaches 5, remove the event listener and end the game
+function rpsChampion() {
+  if (playerScore === 5) {
+    console.log('Player is the champion!');
+
+    playerChoices.removeEventListener('click', gameTime);
+
+    return 'Player is the champion!';
+  }
+
+  // code
+  if (computerScore === 5) {
+    console.log('Computer is the champion!');
+
+    playerChoices.removeEventListener('click', gameTime);
+
+    return 'Computer is the champion!';
   }
 }
