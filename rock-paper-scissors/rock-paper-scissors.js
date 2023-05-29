@@ -1,12 +1,15 @@
 /* eslint-disable no-undef */
 /* eslint-disable prefer-const */
 
-// select each button and asign them all to the variable "rpsButtons"
 const playerChoices = document.querySelector('.player-choices');
+let playerScore = document.querySelector('.player-score');
+let computerScore = document.querySelector('.computer-score');
+let rpsUpdates = document.querySelector('.choices-made');
+const resetButton = document.querySelector('.reset-button');
 
 // asign both player and computer a score of 0
-let playerScore = 0;
-let computerScore = 0;
+let playerUpdatedScore = 0;
+let computerUpdatedScore = 0;
 
 playerChoices.addEventListener('click', gameTime);
 
@@ -38,6 +41,8 @@ function computersChoice() {
 // decide what value to return based on the outcome of what the player and computer picked
 function decideRoundVictor(playerChoice, computerChoice) {
   if (playerChoice === computerChoice) {
+    rpsUpdates.textContent = "It's a tie";
+
     return "It's a tie";
   }
 
@@ -46,8 +51,11 @@ function decideRoundVictor(playerChoice, computerChoice) {
     (playerChoice === 'paper' && computerChoice === 'rock') ||
     (playerChoice === 'scissors' && computerChoice === 'paper')
   ) {
+    rpsUpdates.textContent = `Player picked ${playerChoice.toUpperCase()} and Computer picked ${computerChoice.toUpperCase()}. Player wins this round`;
+
     return 'Player wins!';
   }
+  rpsUpdates.textContent = `Computer picked ${computerChoice.toUpperCase()} and Player picked ${playerChoice.toUpperCase()}. Computer wins this round`;
 
   return 'Computer wins!';
 }
@@ -55,19 +63,23 @@ function decideRoundVictor(playerChoice, computerChoice) {
 // keep track of the score based on who won each round
 function updateRPSScore(roundVictor) {
   if (roundVictor === 'Player wins!') {
-    playerScore += 1;
+    playerUpdatedScore += 1;
+
+    playerScore.textContent = playerUpdatedScore;
   }
 
   // code
   else if (roundVictor === 'Computer wins!') {
-    computerScore += 1;
+    computerUpdatedScore += 1;
+
+    computerScore.textContent = computerUpdatedScore;
   }
 }
 
 // once a score reaches 5, remove the event listener and end the game
 function rpsChampion() {
-  if (playerScore === 5) {
-    console.log('Player is the champion!');
+  if (playerUpdatedScore === 5) {
+    rpsUpdates.textContent = 'Player is the champion!';
 
     playerChoices.removeEventListener('click', gameTime);
 
@@ -75,11 +87,23 @@ function rpsChampion() {
   }
 
   // code
-  if (computerScore === 5) {
-    console.log('Computer is the champion!');
+  if (computerUpdatedScore === 5) {
+    rpsUpdates.textContent = 'Computer is the champion!';
 
     playerChoices.removeEventListener('click', gameTime);
 
     return 'Computer is the champion!';
   }
 }
+
+resetButton.addEventListener('click', () => {
+  playerUpdatedScore = 0;
+  playerScore.textContent = 0;
+
+  computerUpdatedScore = 0;
+  computerScore.textContent = 0;
+
+  rpsUpdates.textContent = 'Click buttons to begin!';
+
+  playerChoices.addEventListener('click', gameTime);
+});
