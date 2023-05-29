@@ -82,8 +82,6 @@ function rpsChampion() {
     rpsUpdates.textContent = 'Player is the champion!';
 
     playerChoices.removeEventListener('click', gameTime);
-
-    return 'Player is the champion!';
   }
 
   // code
@@ -91,8 +89,6 @@ function rpsChampion() {
     rpsUpdates.textContent = 'Computer is the champion!';
 
     playerChoices.removeEventListener('click', gameTime);
-
-    return 'Computer is the champion!';
   }
 }
 
